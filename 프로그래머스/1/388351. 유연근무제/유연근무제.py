@@ -20,6 +20,5 @@ def solution(schedules, timelogs, startday):
                 late += 1
                 break
 
-    # 전체 직원 수에서 지각 직원 수 제외
-    answer = n - late
-    return answer
+    # 상품 받을 직원 수 = 전체 직원 수 - 지각 직원 수
+    return n - late
