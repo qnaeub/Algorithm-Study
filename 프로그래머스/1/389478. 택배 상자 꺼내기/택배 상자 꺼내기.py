@@ -1,8 +1,10 @@
-def makeMatrix(n, w):
+def solution(n, w, num):
+    # 상자 번호의 인덱스
+    r_index = 0
+    c_index = 0
+    
     # 행 개수 설정
-    r = int(n / w)
-    if (n % w) != 0:
-        r += 1
+    r = (n + w - 1) // w
 
     # 0으로 채운 행렬 생성
     matrix = [[0] * w for _ in range(r)]
@@ -19,6 +21,9 @@ def makeMatrix(n, w):
                 if k > n:
                     break
                 matrix[i][j] = k
+                if k == num:
+                    r_index = i
+                    c_index = j
         # 역방향 쌓기
         else:
             for j in range(w - 1, -1, -1):
@@ -26,13 +31,9 @@ def makeMatrix(n, w):
                 if k > n:
                     break
                 matrix[i][j] = k
-    
-    return matrix
-
-def countResult(matrix, num):
-    # 상자 번호의 인덱스 찾기
-    r_index = matrix.index([row for row in matrix if num in row][0])
-    c_index = matrix[r_index].index(num)
+                if k == num:
+                    r_index = i
+                    c_index = j
 
     # 꺼내야 하는 상자 개수 세기
     answer = 0
@@ -44,12 +45,4 @@ def countResult(matrix, num):
         else:
             answer += 1
 
-    return answer
-
-def solution(n, w, num):
-    # 상자 쌓기
-    matrix = makeMatrix(n, w)
-
-    # 결과값 구하기
-    answer = countResult(matrix, num)
     return answer
