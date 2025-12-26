@@ -1,8 +1,10 @@
 def solution(wallet, bill):
+    wallet, bill = sorted(wallet), sorted(bill)
     answer = 0
     
-    while (min(bill) > min(wallet) or max(bill) > max(wallet)):
-        bill[bill.index(max(bill))] //= 2
+    while (bill[0] > wallet[0] or bill[1] > wallet[1]):
+        bill[1] //= 2
+        bill = sorted(bill)
         answer += 1
     
     return answer
