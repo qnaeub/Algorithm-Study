@@ -4,10 +4,10 @@ def solution(schedules, timelogs, startday):
 
     # 한 사람씩 지각 확인
     for i in range(n):
-        # (i+1)번째 직원의 정상 출근 마감 시각 설정
-        deadline = schedules[i] + 10
-        if deadline % 100 >= 60:
-            deadline += 40
+        # (i+1)번째 직원의 정상 출근 마감 시각(deadline) 계산
+        h, m = divmod(schedules[i], 100)
+        total_m = h * 60 + m + 10
+        deadline = (total_m // 60) * 100 + (total_m % 60)
 
         for j in range(7):
             # 주말인 경우 지각 체크 X
