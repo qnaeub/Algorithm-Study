@@ -1,6 +1,9 @@
 def solution(n, w, num):
     # 상자 번호의 인덱스
-    r_index, c_index = 0, 0
+    r_index = (num - 1) // w
+    c_index = (num - 1) % w
+    if r_index % 2 != 0:
+        c_index = (w - 1) - c_index
     
     # 행 개수 설정
     r = (n + w - 1) // w
@@ -18,8 +21,6 @@ def solution(n, w, num):
             real_j = j if i % 2 == 0 else (w - 1) - j
             
             matrix[i][real_j] = k
-            if k == num:
-                r_index, c_index = i, real_j
 
     # 꺼내야 하는 상자 개수 세기
     answer = 0
